@@ -13,10 +13,10 @@ public class ToDoApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent mainScreenRoot = FXMLLoader.load(getClass().getResource("mainscreen.fmxl"));
+        Parent mainScreenRoot = FXMLLoader.load(getClass().getResource("mainscreen.fxml"));
         Scene mainScreen = new Scene(mainScreenRoot);
         primaryStage.setTitle("To Do");
-        primaryStage.setScene(new Scene(mainScreenRoot));
+        primaryStage.setScene(mainScreen);
         primaryStage.show();
     }
 
