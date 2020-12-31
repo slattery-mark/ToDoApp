@@ -19,6 +19,25 @@ public class Task {
         deadline.set(Calendar.SECOND, 00);
 
     }
+    Task(String name, String description){
+        this.name = name;
+        this.description = description;
+
+        deadline = Calendar.getInstance();
+        deadline.set(Calendar.HOUR, 11);
+        deadline.set(Calendar.MINUTE, 59);
+        deadline.set(Calendar.SECOND, 00);
+    }
+    Task(String name, String description, int date, int month, int year){
+        this.name = name; //set name
+        this.description = description; //set description
+
+        this.setDeadlineDate(date, month, year); // set deadline date
+        deadline.set(Calendar.HOUR, 11);
+        deadline.set(Calendar.MINUTE, 59);
+        deadline.set(Calendar.SECOND, 00);
+
+    }
     Task(String name, String description, int date, int month, int year, int hour, int min) {
         this.name = name; //set name
         this.description = description; //set description
