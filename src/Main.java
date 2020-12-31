@@ -6,7 +6,6 @@ public class Main {
 
         Application.launch(ToDoApp.class, args);
 
-
     }
 
 }
