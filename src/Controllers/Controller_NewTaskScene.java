@@ -4,6 +4,7 @@ import TaskResources.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -26,6 +27,11 @@ public class Controller_NewTaskScene {
     void AddTask(MouseEvent event) {
         Task task = new Task(TaskNameField.getText(), TaskDescriptionField.getText());
 
+        // Close stage after adding a task
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.getOnCloseRequest();
+        stage.close();
     }
 
 }

@@ -9,7 +9,7 @@ public class Task {
 
 
 
-    Task(String name){
+    public Task(String name){
         this.name = name;
 
         //sets deadline as the current date at 11:59 pm by default

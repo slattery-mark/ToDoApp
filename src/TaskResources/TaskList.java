@@ -7,7 +7,7 @@ public class TaskList {
     private String topic;
     ArrayList<Task> list = new ArrayList<Task>();
 
-    TaskList(String topic){
+    public TaskList(String topic){
         this.topic = topic;
         list = new ArrayList<Task>();
     }
@@ -17,6 +17,9 @@ public class TaskList {
             System.out.println((list.get(i).toString()));
 
         }
+    }
+    public void AddTask(Task task) {
+        list.add(task);
     }
     public void assignDeadline(String taskName, Calendar deadline){
         System.out.println("Enter deadline information:");

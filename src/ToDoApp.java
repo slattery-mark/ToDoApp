@@ -1,3 +1,5 @@
+import TaskResources.Task;
+import TaskResources.TaskList;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;

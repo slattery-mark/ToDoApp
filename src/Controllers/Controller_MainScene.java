@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
@@ -23,16 +22,24 @@ public class Controller_MainScene implements Initializable {
     private MenuItem File_NewTask;
 
     @FXML
-    private ListView<?> TaskList;
+    private ListView<String> TaskList;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // This is where the TaskList should be populated
-        // And any other default attributes
+        // Initialize some tasks and populate TaskList
+        Task task1 = new Task("test1name", "test1description");
+        Task task2 = new Task("test2name", "test2description");
+        Task task3 = new Task("test3name", "test3description");
+
+        TaskList.getItems().add(task1.toString());
+        TaskList.getItems().add(task2.toString());
+        TaskList.getItems().add(task3.toString());
+
     }
 
     @FXML
     public void NewTaskButtonPress(ActionEvent event) throws IOException {
+        // Launch scene_newtask
         Parent newTaskScreenRoot = FXMLLoader.load(getClass().getResource("../Scenes/scene_newtask.fxml"));
         Scene newTaskScreen = new Scene(newTaskScreenRoot);
         Stage secondaryStage = new Stage();
