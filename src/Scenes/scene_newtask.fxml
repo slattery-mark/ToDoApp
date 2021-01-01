@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_NewTaskScene">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_NewTaskScene">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="113.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="265.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="102.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="187.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="132.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <TextField fx:id="TaskNameField" GridPane.columnIndex="1">
@@ -25,7 +25,7 @@
             <Insets left="10.0" right="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="TaskDescriptionField" prefHeight="64.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="TaskDescriptionField" alignment="TOP_LEFT" prefHeight="114.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="10.0" right="10.0" />
          </GridPane.margin>
@@ -36,14 +36,14 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <HBox prefHeight="22.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <HBox prefHeight="22.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="AddTaskButton" mnemonicParsing="false" onMouseClicked="#AddTask" text="Add Task">
+            <Button fx:id="AddTaskButton" defaultButton="true" mnemonicParsing="false" onAction="#AddTask" text="Add Task">
                <HBox.margin>
                   <Insets left="25.0" right="25.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="CancelButton" mnemonicParsing="false" text="Cancel">
+            <Button fx:id="CancelButton" cancelButton="true" mnemonicParsing="false" onAction="#CloseStage" text="Cancel">
                <HBox.margin>
                   <Insets top="25.0" />
                </HBox.margin>

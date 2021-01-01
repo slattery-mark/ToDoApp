@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,9 +44,14 @@ public class Controller_MainScene implements Initializable {
         Parent newTaskScreenRoot = FXMLLoader.load(getClass().getResource("../Scenes/scene_newtask.fxml"));
         Scene newTaskScreen = new Scene(newTaskScreenRoot);
         Stage secondaryStage = new Stage();
+        secondaryStage.initModality(Modality.APPLICATION_MODAL);
         secondaryStage.setTitle("Add a Task");
         secondaryStage.setScene(newTaskScreen);
-        secondaryStage.show();
+        secondaryStage.showAndWait();
+        // If a task is added
+        if (secondaryStage.getUserData() != null) {
+            Task task = (Task) secondaryStage.getUserData();
+            TaskList.getItems().add(task.toString());
+        }
     }
-
 }
