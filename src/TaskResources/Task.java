@@ -28,7 +28,7 @@ public class Task {
         deadline.set(Calendar.MINUTE, 59);
         deadline.set(Calendar.SECOND, 00);
     }
-    Task(String name, String description, int date, int month, int year){
+    public Task(String name, String description, int date, int month, int year){
         this.name = name; //set name
         this.description = description; //set description
 
