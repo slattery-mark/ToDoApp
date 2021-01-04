@@ -7,9 +7,7 @@ public class Task {
     private Calendar deadline;
     private String description="";
 
-
-
-    Task(String name){
+    public Task(String name){
         this.name = name;
 
         //sets deadline as the current date at 11:59 pm by default
@@ -19,7 +17,7 @@ public class Task {
         deadline.set(Calendar.SECOND, 00);
 
     }
-    Task(String name, String description){
+    public Task(String name, String description){
         this.name = name;
         this.description = description;
 
@@ -28,20 +26,20 @@ public class Task {
         deadline.set(Calendar.MINUTE, 59);
         deadline.set(Calendar.SECOND, 00);
     }
-    Task(String name, String description, int date, int month, int year){
+    public Task(String name, String description, int day, int month, int year){
         this.name = name; //set name
         this.description = description; //set description
 
-        this.setDeadlineDate(date, month, year); // set deadline date
+        this.setDeadlineDate(day, month, year); // set deadline date
         deadline.set(Calendar.HOUR, 11);
         deadline.set(Calendar.MINUTE, 59);
         deadline.set(Calendar.SECOND, 00);
 
     }
-    Task(String name, String description, int date, int month, int year, int hour, int min) {
+    public Task(String name, String description, int day, int month, int year, int hour, int min) {
         this.name = name; //set name
         this.description = description; //set description
-        this.setDeadlineDate(date, month, year); // set deadline date
+        this.setDeadlineDate(day, month, year); // set deadline date
         this.setDeadlineTime(hour, min);// set deadline time
 
     }
@@ -51,9 +49,9 @@ public class Task {
         //set name of the task
         this.name = name;
     }
-    public void setDeadlineDate(int date, int month, int year){
+    public void setDeadlineDate(int day, int month, int year){
         //set the deadline date for the task
-        deadline.set(year,month,date);
+        deadline.set(year, month, day);
     }
     public void setDeadlineTime(int hour, int min)
     {
@@ -80,9 +78,5 @@ public class Task {
     }
 
     public void display(){}
-
-
-
-
 
 }
