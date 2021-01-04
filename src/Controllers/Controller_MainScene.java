@@ -28,14 +28,13 @@ public class Controller_MainScene implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initialize some tasks and populate TaskList
-        Task task1 = new Task("test1name", "test1description");
-        Task task2 = new Task("test2name", "test2description");
-        Task task3 = new Task("test3name", "test3description");
-
-        TaskList.getItems().add(task1);
-        TaskList.getItems().add(task2);
-        TaskList.getItems().add(task3);
-
+        TaskList.getItems().add(new Task("name only"));
+        TaskList.getItems().add(new Task("name -> description", "and description"));
+        TaskList.getItems().add(new Task("name -> year", "descrip + year", 2020));
+        TaskList.getItems().add(new Task("name -> month ", "descrip + year + month", 2021, 1));
+        TaskList.getItems().add(new Task("name -> day", "descrip + year + month + day", 2022, 2, 1));
+        TaskList.getItems().add(new Task("name -> hour", "descrip + year + month + day + hour", 2023, 3, 2, 12));
+        TaskList.getItems().add(new Task("name -> minute", "descrip + year + month + day + hour + minute", 2024, 4, 3, 1, 30));
     }
 
     @FXML // Launch Scene scene_newtask

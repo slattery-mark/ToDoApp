@@ -1,4 +1,86 @@
 package TaskResources;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+public class Task {
+    private String name;
+    private String description = "";
+    private LocalDateTime deadline;
+
+    public Task(String name) {
+        this.name = name;
+        deadline = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59));
+    }
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+        deadline = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59));
+    }
+    public Task(String name, String description, int year) {
+        this.name = name;
+        this.description = description;
+        deadline = LocalDateTime.of(year, LocalDate.now().getMonth(), LocalDate.now().getDayOfMonth(), 23, 59);
+    }
+    public Task(String name, String description, int year, int month) {
+        this.name = name;
+        this.description = description;
+        deadline = LocalDateTime.of(year, month, LocalDate.now().getDayOfMonth(), 23, 59);
+    }
+    public Task(String name, String description, int year, int month, int day) {
+        this.name = name;
+        this.description = description;
+        deadline = LocalDateTime.of(year, month, day, 23, 59);
+    }
+    public Task(String name, String description, int year, int month, int day, int hour) {
+        this.name = name;
+        this.description = description;
+        deadline = LocalDateTime.of(year, month, day, hour, 59);
+    }
+    public Task(String name, String description, int year, int month, int day, int hour, int minute) {
+        this.name = name;
+        this.description = description;
+        deadline = LocalDateTime.of(year, month, day, hour, minute);
+    }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setYear(int year) {
+        deadline = deadline.withYear(year);
+    }
+    public void setMonth(int month) {
+        deadline = deadline.withMonth(month);
+    }
+    public void setDay(int day) {
+        deadline = deadline.withDayOfMonth(day);
+    }
+    public void setHour(int hour) {
+        deadline = deadline.withHour(hour);
+    }
+    public void setMinute(int minute) {
+        deadline = deadline.withMinute(minute);
+    }
+    @Override
+    public String toString() {
+        String str = name+"\n"+description+ "\n"+deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy h:mm"));
+        if (deadline.getHour() < 12) {
+            return str+" AM";
+        }
+        else {
+            return str+" PM";
+        }
+    }
+}
+
+
+/*
+package TaskResources;
+
 import java.util.*;
 
 public class Task {
@@ -44,7 +126,7 @@ public class Task {
 
     }
 
-    /*Setter Functions*/
+    // Setter Functions
     public void setName(String name){
         //set name of the task
         this.name = name;
@@ -65,7 +147,7 @@ public class Task {
         this.description = description;
     }
 
-    /*Getter Functions*/
+    // Getter Functions
     public String getName(){ return name;}
     public Date getDeadline() {return deadline.getTime();}
     public String getDescription(){return description;}
@@ -80,3 +162,4 @@ public class Task {
     public void display(){}
 
 }
+*/
