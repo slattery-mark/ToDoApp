@@ -20,7 +20,7 @@
     <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="TaskNameField" GridPane.columnIndex="1">
+      <TextField fx:id="TaskNameField" promptText="(Required)" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="10.0" right="10.0" />
          </GridPane.margin>

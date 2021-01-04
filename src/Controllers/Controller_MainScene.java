@@ -42,7 +42,7 @@ public class Controller_MainScene implements Initializable {
     public void NewTaskButtonPress(ActionEvent event) throws IOException {
         // Create a Parent object (Inherits from Node object) - loads scene_newtask.fxml
         Parent newTaskScreenRoot = FXMLLoader.load(getClass().getResource("../Scenes/scene_newtask.fxml"));
-        // Create a Scene object using Parent Node
+        // Create a Scene object using Parent
         Scene newTaskScreen = new Scene(newTaskScreenRoot);
         // Create a Stage object
         Stage secondaryStage = new Stage();

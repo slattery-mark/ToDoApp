@@ -1,14 +1,20 @@
 package Controllers;
 
 import TaskResources.Task;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Controller_NewTaskScene {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller_NewTaskScene implements Initializable {
 
     @FXML
     private TextField TaskNameField;
@@ -22,13 +28,24 @@ public class Controller_NewTaskScene {
     @FXML
     private Button CancelButton;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Disable Add Task Button while there is no text in the Task Name Field
+        AddTaskButton.setDisable(true);
+        TaskNameField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if(t1.equals(""))
+                    AddTaskButton.setDisable(true);
+                else
+                    AddTaskButton.setDisable(false);
+            }
+        });
+    }
+
     @FXML // Add Task button execution
     void AddTask(ActionEvent event) {
-        // create popup if task name field is empty? or find way to disable "Add Task" button
-        if (TaskNameField.getText().trim().isEmpty()) {
-
-        }
-        else {
+        if (!TaskNameField.getText().trim().isEmpty()) {
             // Create a task object
             Task task = new Task(TaskNameField.getText(), TaskDescriptionField.getText());
             // Store the task in the stage object, which can be accessed by the stage is was called from(?), then close the stage
@@ -47,4 +64,6 @@ public class Controller_NewTaskScene {
         stage.getOnCloseRequest();
         stage.close();
     }
+
 }
+
