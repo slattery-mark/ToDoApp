@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_MainScene">
@@ -29,10 +31,22 @@
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane prefHeight="377.0" prefWidth="600.0">
+      <HBox prefHeight="370.0" prefWidth="590.0">
          <children>
-            <ListView fx:id="TaskList" layoutX="14.0" layoutY="14.0" prefHeight="347.0" prefWidth="200.0" />
+            <ListView fx:id="TaskList" prefHeight="367.0" prefWidth="200.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </ListView>
+            <TextArea id="DetailsPane" fx:id="DetailsPane" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </TextArea>
          </children>
-      </AnchorPane>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
    </children>
 </VBox>

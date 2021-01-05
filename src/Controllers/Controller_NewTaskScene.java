@@ -1,8 +1,7 @@
 package Controllers;
 
 import TaskResources.Task;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,14 +31,12 @@ public class Controller_NewTaskScene implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Disable Add Task Button while there is no text in the Task Name Field
         AddTaskButton.setDisable(true);
-        TaskNameField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if(t1.equals(""))
-                    AddTaskButton.setDisable(true);
-                else
-                    AddTaskButton.setDisable(false);
-            }
+        // Set a listener to the task name field so that it is required before adding a task
+        TaskNameField.textProperty().addListener((observableValue, s, t1) -> {
+            if(t1.equals(""))
+                AddTaskButton.setDisable(true);
+            else
+                AddTaskButton.setDisable(false);
         });
     }
 
@@ -52,7 +49,7 @@ public class Controller_NewTaskScene implements Initializable {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.setUserData(task);
-            stage.getOnCloseRequest();
+            //stage.getOnCloseRequest(); --commented out because i don't know what this does
             stage.close();
         }
     }
@@ -61,7 +58,7 @@ public class Controller_NewTaskScene implements Initializable {
     public void CloseStage(ActionEvent event) {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
-        stage.getOnCloseRequest();
+        //stage.getOnCloseRequest(); --commented out because i don't know what this does
         stage.close();
     }
 
