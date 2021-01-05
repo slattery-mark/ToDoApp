@@ -3,57 +3,59 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_MainScene">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_MainScene">
    <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                  <MenuItem id="File_NewTask" fx:id="File_NewTask" mnemonicParsing="false" onAction="#NewTaskButtonPress" text="New Task" />
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <HBox prefHeight="370.0" prefWidth="590.0">
+      <VBox prefHeight="400.0" prefWidth="225.0">
          <children>
-            <ListView fx:id="TaskList" prefHeight="367.0" prefWidth="200.0">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="10.0" />
-               </HBox.margin>
+            <ListView fx:id="ListTasks">
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
             </ListView>
-            <TextArea id="DetailsPane" fx:id="DetailsPane" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="10.0" />
-               </HBox.margin>
-            </TextArea>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="NewTaskButton" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" onAction="#NewTaskButtonPress" prefHeight="31.0" prefWidth="180.0" text="New Task" />
-               </children>
-            </AnchorPane>
+            <Button fx:id="BtnNewTask" mnemonicParsing="false" onAction="#NewTaskButtonPress" prefHeight="25.0" prefWidth="225.0" text="New Task">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
-         <VBox.margin>
+         <HBox.margin>
             <Insets />
-         </VBox.margin>
-      </HBox>
+         </HBox.margin>
+      </VBox>
+      <VBox prefHeight="400.0" prefWidth="225.0">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <children>
+            <HBox prefHeight="32.0" prefWidth="215.0">
+               <children>
+                  <TextField fx:id="TxtFieldTaskName" editable="false" prefHeight="25.0" prefWidth="179.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin></TextField>
+                  <MenuButton fx:id="MenuBtnSettings" mnemonicParsing="false" text="...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Delete Task" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <TextArea fx:id="TxtAreaTaskDetails" editable="false" prefHeight="356.0" prefWidth="215.0" wrapText="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextArea>
+         </children>
+      </VBox>
    </children>
-</VBox>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>

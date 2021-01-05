@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,29 +18,33 @@ import java.util.ResourceBundle;
 
 public class Controller_MainScene implements Initializable {
 
-    public Button NewTaskButton;
     @FXML
-    private TextArea DetailsPane;
+    private ListView<Task> ListTasks;
     @FXML
-    private MenuItem File_NewTask;
+    private Button BtnNewTask;
     @FXML
-    private ListView<Task> TaskList;
+    private TextField TxtFieldTaskName;
+    @FXML
+    private MenuButton MenuBtnSettings;
+    @FXML
+    private TextArea TxtAreaTaskDetails;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Add a listener to the TaskList in order to display a task's details on the details pane
-        TaskList.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
-            System.out.println("Selected Task: " + t1.toString());
-            DetailsPane.setText(t1.getDescription());
+        ListTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
+            TxtFieldTaskName.setText(t1.getName());
+            TxtAreaTaskDetails.setText(t1.getDescription());
         });
         // Initialize TaskList with some tasks
-        TaskList.getItems().add(new Task("constructor 1 (name only)"));
-        TaskList.getItems().add(new Task("constructor 2", "name and description"));
-        TaskList.getItems().add(new Task("constructor 3", "descrip + year", 2020));
-        TaskList.getItems().add(new Task("constructor 4", "descrip + year + month", 2021, 2));
-        TaskList.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
-        TaskList.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
-        TaskList.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
+        ListTasks.getItems().add(new Task("constructor 1 (name only)"));
+        ListTasks.getItems().add(new Task("constructor 2", "name and description"));
+        ListTasks.getItems().add(new Task("constructor 3", "descrip + year", 2020));
+        ListTasks.getItems().add(new Task("constructor 4", "descrip + year + month", 2021, 2));
+        ListTasks.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
+        ListTasks.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
+        ListTasks.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
     }
 
     @FXML // Launch Scene scene_newtask
@@ -64,7 +65,7 @@ public class Controller_MainScene implements Initializable {
         // If a task was added, get the task & add it to TaskList ListView object
         if (secondaryStage.getUserData() != null) {
             Task task = (Task) secondaryStage.getUserData();
-            TaskList.getItems().add(task);
+            ListTasks.getItems().add(task);
         }
     }
 

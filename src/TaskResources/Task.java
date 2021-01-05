@@ -68,7 +68,6 @@ public class Task {
     @Override
     public String toString() {
         String str = name
-                +"\n"+description
                 +"\n"+deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy h:mm"));
         return (deadline.getHour() < 12) ? str+" AM" : str+" PM";
     }
