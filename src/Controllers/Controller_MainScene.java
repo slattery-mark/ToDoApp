@@ -32,11 +32,13 @@ public class Controller_MainScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         // Add a listener to the TaskList in order to display a task's details on the details pane
         ListTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
             TxtFieldTaskName.setText(t1.getName());
             TxtAreaTaskDetails.setText(t1.getDescription());
         });
+
         // Initialize TaskList with some tasks
         ListTasks.getItems().add(new Task("constructor 1 (name only)"));
         ListTasks.getItems().add(new Task("constructor 2", "name and description"));
