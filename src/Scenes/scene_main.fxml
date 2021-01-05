@@ -35,21 +35,24 @@
       </MenuBar>
       <HBox prefHeight="370.0" prefWidth="590.0">
          <children>
-            <ListView fx:id="TaskList" prefHeight="367.0" prefWidth="200.0">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="10.0" />
-               </HBox.margin>
-            </ListView>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" prefHeight="370.0" prefWidth="213.0">
+                     <children>
+                        <Button fx:id="NewTaskButton" layoutY="331.0" mnemonicParsing="false" onAction="#NewTaskButtonPress" prefHeight="7.0" prefWidth="213.0" text="New Task" />
+                        <ListView fx:id="TaskList" maxHeight="-Infinity" prefHeight="329.0" prefWidth="213.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+               </children>
+            </VBox>
             <TextArea id="DetailsPane" fx:id="DetailsPane" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </TextArea>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="NewTaskButton" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" onAction="#NewTaskButtonPress" prefHeight="31.0" prefWidth="180.0" text="New Task" />
-               </children>
-            </AnchorPane>
          </children>
          <VBox.margin>
             <Insets />
