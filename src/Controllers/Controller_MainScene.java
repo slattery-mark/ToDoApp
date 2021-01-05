@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class Controller_MainScene implements Initializable {
 
+    public Button NewTaskButton;
     @FXML
     private TextArea DetailsPane;
     @FXML
