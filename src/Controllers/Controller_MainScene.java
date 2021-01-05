@@ -1,6 +1,7 @@
 package Controllers;
 
 import TaskResources.Task;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -18,24 +20,28 @@ import java.util.ResourceBundle;
 
 public class Controller_MainScene implements Initializable {
 
-
+    @FXML
+    private TextArea DetailsPane;
     @FXML
     private MenuItem File_NewTask;
-
     @FXML
     private ListView<Task> TaskList;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Initialize some tasks and populate TaskList
-        Task task1 = new Task("test1name", "test1description");
-        Task task2 = new Task("test2name", "test2description");
-        Task task3 = new Task("test3name", "test3description");
-
-        TaskList.getItems().add(task1);
-        TaskList.getItems().add(task2);
-        TaskList.getItems().add(task3);
-
+        // Add a listener to the TaskList in order to display a task's details on the details pane
+        TaskList.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
+            System.out.println("Selected Task: " + t1.toString());
+            DetailsPane.setText(t1.getDescription());
+        });
+        // Initialize TaskList with some tasks
+        TaskList.getItems().add(new Task("constructor 1 (name only)"));
+        TaskList.getItems().add(new Task("constructor 2", "name and description"));
+        TaskList.getItems().add(new Task("constructor 3", "descrip + year", 2020));
+        TaskList.getItems().add(new Task("constructor 4", "descrip + year + month", 2021, 2));
+        TaskList.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
+        TaskList.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
+        TaskList.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
     }
 
     @FXML // Launch Scene scene_newtask
@@ -59,4 +65,5 @@ public class Controller_MainScene implements Initializable {
             TaskList.getItems().add(task);
         }
     }
+
 }
