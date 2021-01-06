@@ -1,6 +1,7 @@
 package Controllers;
 
 import TaskResources.Task;
+import javafx.beans.InvalidationListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,6 +35,17 @@ public class Controller_MainScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // disable edit/delete buttons if the list is empty
+        ListViewTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
+            if (ListViewTasks.getSelectionModel().isEmpty()) {
+                BtnDeleteTask.setDisable(true);
+                BtnEditTask.setDisable(true);
+            }
+            else {
+                BtnDeleteTask.setDisable(false);
+                BtnEditTask.setDisable(false);
+            }
+        });
         ListViewTasks.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
