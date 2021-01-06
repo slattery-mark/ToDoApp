@@ -12,7 +12,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_MainScene">
    <children>
-      <VBox prefHeight="400.0" prefWidth="225.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="225.0">
          <children>
             <ListView fx:id="ListTasks">
                <VBox.margin>
@@ -29,25 +29,25 @@
             <Insets />
          </HBox.margin>
       </VBox>
-      <VBox prefHeight="400.0" prefWidth="225.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="225.0">
          <HBox.margin>
             <Insets />
          </HBox.margin>
          <children>
-            <HBox prefHeight="32.0" prefWidth="215.0">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="215.0">
                <children>
-                  <TextField fx:id="TxtFieldTaskName" editable="false" prefHeight="25.0" prefWidth="179.0">
+                  <TextField fx:id="TxtFieldTaskName" onKeyReleased="#TxtFieldTaskNameUpdate" prefHeight="25.0" prefWidth="175.0">
                      <HBox.margin>
                         <Insets bottom="10.0" />
                      </HBox.margin></TextField>
                   <MenuButton fx:id="MenuBtnSettings" mnemonicParsing="false" text="...">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Delete Task" />
+                      <MenuItem fx:id="DeleteButton" mnemonicParsing="false" onAction="#DeleteButtonPress" text="Delete Task" />
                     </items>
                   </MenuButton>
                </children>
             </HBox>
-            <TextArea fx:id="TxtAreaTaskDetails" editable="false" prefHeight="356.0" prefWidth="215.0" wrapText="true">
+            <TextArea fx:id="TxtAreaTaskDetails" onKeyReleased="#TxtAreaTaskDetailsUpdate" prefHeight="345.0" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

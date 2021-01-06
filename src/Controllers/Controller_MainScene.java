@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,6 +27,8 @@ public class Controller_MainScene implements Initializable {
     private TextField TxtFieldTaskName;
     @FXML
     private MenuButton MenuBtnSettings;
+    @FXML
+    private MenuItem DeleteButton;
     @FXML
     private TextArea TxtAreaTaskDetails;
 
@@ -69,6 +72,20 @@ public class Controller_MainScene implements Initializable {
             Task task = (Task) secondaryStage.getUserData();
             ListTasks.getItems().add(task);
         }
+    }
+
+    @FXML
+    public void DeleteButtonPress(ActionEvent event) throws Exception {
+        ListTasks.getItems().remove(ListTasks.getSelectionModel().getSelectedIndex());
+    }
+    @FXML
+    void TxtAreaTaskDetailsUpdate(KeyEvent event) {
+        ListTasks.getSelectionModel().getSelectedItem().setDescription(TxtAreaTaskDetails.getText());
+    }
+
+    @FXML
+    void TxtFieldTaskNameUpdate(KeyEvent event) {
+        ListTasks.getSelectionModel().getSelectedItem().setName(TxtFieldTaskName.getText());
     }
 
 }

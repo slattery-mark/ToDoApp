@@ -44,6 +44,12 @@ public class Task {
         this.description = description;
         deadline = LocalDateTime.of(year, month, day, hour, minute);
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public String getName() {
         return name;
     }
