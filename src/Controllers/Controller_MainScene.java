@@ -87,5 +87,5 @@ public class Controller_MainScene implements Initializable {
     void TxtFieldTaskNameUpdate(KeyEvent event) {
         ListTasks.getSelectionModel().getSelectedItem().setName(TxtFieldTaskName.getText());
     }
-    
+
 }
