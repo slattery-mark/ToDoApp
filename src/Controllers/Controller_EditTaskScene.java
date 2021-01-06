@@ -5,10 +5,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller_EditTaskScene implements Initializable {
+
+    @FXML
+    private Button BtnBack;
 
     @FXML
     private TextField TaskName;
