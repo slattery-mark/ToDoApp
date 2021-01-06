@@ -45,12 +45,9 @@ public class Controller_MainScene implements Initializable {
                 BtnEditTask.setDisable(false);
             }
         });
-        ListViewTasks.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.DELETE) {
-                    DeleteTaskBtnPress(new ActionEvent());
-                }
+        ListViewTasks.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.DELETE) {
+                DeleteTaskBtnPress(new ActionEvent());
             }
         });
         ListViewTasks.getItems().add(new Task("constructor 1 (name only)"));
@@ -70,8 +67,11 @@ public class Controller_MainScene implements Initializable {
 
     @FXML
     void EditTaskBtnPress(ActionEvent event) throws IOException {
-        Parent editTaskSceneRoot = FXMLLoader.load(getClass().getResource("../Scenes/scene_edittask.fxml"));
-        Scene editTaskScene = new Scene(editTaskSceneRoot);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_edittask.fxml"));
+        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene();
+        loader.setController(controller_editTaskScene);
+        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
+        Scene editTaskScene = new Scene(loader.load());
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(editTaskScene);

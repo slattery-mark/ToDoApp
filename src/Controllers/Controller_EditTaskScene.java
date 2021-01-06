@@ -1,15 +1,20 @@
 package Controllers;
 
+import TaskResources.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller_EditTaskScene implements Initializable {
-
+    private Task task;
     @FXML
     private TextField TaskName;
 
@@ -21,6 +26,11 @@ public class Controller_EditTaskScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        TaskName.setText(task.getName());
+        TaskDescription.setText(task.getDescription());
+    }
 
+    void initData(Task task) {
+        this.task = task;
     }
 }
