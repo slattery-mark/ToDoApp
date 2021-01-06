@@ -1,57 +1,72 @@
 package Controllers;
 
 import TaskResources.Task;
-
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Modality;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Controller_MainScene implements Initializable {
 
     @FXML
-    private ListView<Task> ListTasks;
+    private ListView<Task> ListViewTasks;
+
     @FXML
     private Button BtnNewTask;
-    @FXML
-    private TextField TxtFieldTaskName;
-    @FXML
-    private MenuButton MenuBtnSettings;
-    @FXML
-    private MenuItem DeleteButton;
-    @FXML
-    private TextArea TxtAreaTaskDetails;
 
+    @FXML
+    private Button BtnEditTask;
+
+    @FXML
+    private Button BtnDeleteTask;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        // Add a listener to the TaskList in order to display a task's details on the details pane
-        ListTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
-            TxtFieldTaskName.setText(t1.getName());
-            TxtAreaTaskDetails.setText(t1.getDescription());
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ListViewTasks.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.DELETE) {
+                    DeleteTaskBtnPress(new ActionEvent());
+                }
+            }
         });
-
-        // Initialize TaskList with some tasks
-        ListTasks.getItems().add(new Task("constructor 1 (name only)"));
-        ListTasks.getItems().add(new Task("constructor 2", "name and description"));
-        ListTasks.getItems().add(new Task("constructor 3", "descrip + year", 2020));
-        ListTasks.getItems().add(new Task("constructor 4", "descrip + year + month", 2021, 2));
-        ListTasks.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
-        ListTasks.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
-        ListTasks.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
+        ListViewTasks.getItems().add(new Task("constructor 1 (name only)"));
+        ListViewTasks.getItems().add(new Task("constructor 2", "name and description"));
+        ListViewTasks.getItems().add(new Task("constructor 3", "descrip + year", 2020));
+        ListViewTasks.getItems().add(new Task("constructor 4", "descrip + year + month", 2021, 2));
+        ListViewTasks.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
+        ListViewTasks.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
+        ListViewTasks.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
+    }
+    @FXML
+    void DeleteTaskBtnPress(ActionEvent event) {
+        if (!ListViewTasks.getItems().isEmpty())
+            ListViewTasks.getItems().remove(ListViewTasks.getSelectionModel().getSelectedIndex());
     }
 
+    @FXML
+    void EditTaskBtnPress(ActionEvent event) {
+
+    }
+
+    @FXML
+    void NewTaskBtnPress(ActionEvent event) {
+
+    }
+}
+/*
     @FXML // Launch Scene scene_newtask
     public void NewTaskButtonPress(ActionEvent event) throws IOException {
         // Create a Parent object (Inherits from Node object) - loads scene_newtask.fxml
@@ -89,3 +104,4 @@ public class Controller_MainScene implements Initializable {
     }
 
 }
+ */
