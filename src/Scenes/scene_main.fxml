@@ -42,7 +42,7 @@
                      </HBox.margin></TextField>
                   <MenuButton fx:id="MenuBtnSettings" mnemonicParsing="false" text="...">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Delete Task" />
+                      <MenuItem fx:id="DeleteButton" mnemonicParsing="false" onAction="#DeleteButtonPress" text="Delete Task" />
                     </items>
                   </MenuButton>
                </children>

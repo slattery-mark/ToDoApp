@@ -27,6 +27,8 @@ public class Controller_MainScene implements Initializable {
     @FXML
     private MenuButton MenuBtnSettings;
     @FXML
+    private MenuItem DeleteButton;
+    @FXML
     private TextArea TxtAreaTaskDetails;
 
 
@@ -69,6 +71,35 @@ public class Controller_MainScene implements Initializable {
             Task task = (Task) secondaryStage.getUserData();
             ListTasks.getItems().add(task);
         }
+    }
+
+    @FXML
+    public void DeleteButtonPress(ActionEvent event) throws Exception {
+        //Get index of selected item
+        final int selectedIndex = ListTasks.getSelectionModel().getSelectedIndex();
+
+        //Get task object of the item to be removed
+        Task itemToDelete = null; //Declare task variable to store the item to be deleted
+        if (selectedIndex != -1) {
+            itemToDelete = ListTasks.getSelectionModel().getSelectedItem(); //If proper index is selected, store item in variable
+        }
+
+        //Find new index to be selected once item is removed
+        int newSelectedIndex = -1; //Declare variable for new selected index, initialize to -1
+        if (selectedIndex == ListTasks.getItems().size() - 1)
+            newSelectedIndex = selectedIndex - 1;
+        else
+            newSelectedIndex = selectedIndex;
+
+
+        ListTasks.getItems().remove(selectedIndex); //Remove the item
+        ListTasks.getSelectionModel().select(newSelectedIndex); //Select the new item
+
+        //Output deleted item info to console
+        System.out.println("selectedIdx: " + selectedIndex);
+        System.out.println("item: " + itemToDelete.toString());
+
+
     }
 
 }
