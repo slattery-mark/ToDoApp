@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,4 +28,15 @@ public class Controller_EditTaskScene implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    @FXML
+    public void BtnBackPress(ActionEvent event){
+
+    }
+
+    @FXML
+    public void BtnDeletePress(ActionEvent event){
+
+    }
+
 }
