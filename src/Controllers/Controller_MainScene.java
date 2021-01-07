@@ -68,17 +68,25 @@ public class Controller_MainScene implements Initializable {
     @FXML
     void EditTaskBtnPress(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_edittask.fxml"));
-        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene();
-        loader.setController(controller_editTaskScene);
-        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
-        Scene editTaskScene = new Scene(loader.load());
+        // get source of button press action
         Node source = (Node) event.getSource();
+        // create a scene object from the source of button press action
+        Scene mainScene = source.getScene();
+        // create edit task scene controller instance
+        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene);
+        // set the controller for edit task scene
+        loader.setController(controller_editTaskScene);
+        // send the selected task to edit task scene controller
+        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
+        // create a new scene object
+        Scene editTaskScene = new Scene(loader.load());
+        // set the stage to the new scene
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(editTaskScene);
     }
 
     @FXML
-    void NewTaskBtnPress(ActionEvent event) {
+    void NewTaskBtnPress(ActionEvent event) throws IOException {
 
     }
 }

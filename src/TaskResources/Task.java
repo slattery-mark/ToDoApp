@@ -50,12 +50,6 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getName() {
-        return name;
-    }
-    public String getDescription() {
-        return description;
-    }
     public void setYear(int year) {
         deadline = deadline.withYear(year);
     }
@@ -71,6 +65,28 @@ public class Task {
     public void setMinute(int minute) {
         deadline = deadline.withMinute(minute);
     }
+    final public String getName() {
+        return name;
+    }
+    final public String getDescription() {
+        return description;
+    }
+    final public int getYear() {
+        return deadline.getYear();
+    }
+    final public int getMonth() {
+        return deadline.getMonthValue();
+    }
+    final public int getDay() {
+        return deadline.getDayOfMonth();
+    }
+    final public int getHour() {
+        return deadline.getHour();
+    }
+    final public int getMinute() {
+        return deadline.getMinute();
+    }
+
     @Override
     public String toString() {
         String str = name
