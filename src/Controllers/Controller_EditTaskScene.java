@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 public class Controller_EditTaskScene implements Initializable {
     private Task task;
     private Scene mainScene;
+    private Controller_MainScene ctrl_main;
 
     @FXML
     private Button BtnBack;
@@ -35,8 +36,9 @@ public class Controller_EditTaskScene implements Initializable {
     @FXML
     private Button BtnDelete;
 
-    Controller_EditTaskScene(Scene mainScene) {
+    Controller_EditTaskScene(Scene mainScene, Controller_MainScene ctrl) {
         this.mainScene = mainScene;
+        ctrl_main = ctrl;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,17 +54,13 @@ public class Controller_EditTaskScene implements Initializable {
 
 
     @FXML
-    private void BtnDeletePress(ActionEvent event){
+    private void BtnDeletePress(ActionEvent event) throws IOException{
         //return to main scene
         Node source = (Node)event.getSource();
         Stage stage = (Stage)source.getScene().getWindow();
         stage.setScene(mainScene);
 
-        FXMLLoader loader = (FXMLLoader) mainScene.getUserData();
-        Controller_MainScene mainSceneCtrl = loader.getController();
-
-        mainSceneCtrl.getListViewTasks().getSelectionModel().select((int)mainScene.getUserData()); //select current task in main scene
-        mainSceneCtrl.DeleteTaskBtnPress(event); //delete selected task
+        ctrl_main.DeleteFromEdit(task);
 
 
     }

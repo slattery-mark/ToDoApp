@@ -78,7 +78,7 @@ public class Controller_MainScene implements Initializable {
 
 
         // create edit task scene controller instance
-        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene);
+        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene, this);
         // set the controller for edit task scene
         loader.setController(controller_editTaskScene);
         // send the selected task to edit task scene controller
@@ -96,7 +96,8 @@ public class Controller_MainScene implements Initializable {
     }
 
     @FXML
-    public ListView<Task> getListViewTasks(){
-        return ListViewTasks;
+    public void DeleteFromEdit(Task task){
+        ListViewTasks.getSelectionModel().select(task);
+        ListViewTasks.getItems().remove(ListViewTasks.getSelectionModel().getSelectedItem());
     }
 }
