@@ -58,13 +58,6 @@ public class Controller_EditTaskScene implements Initializable {
         Stage stage = (Stage)source.getScene().getWindow();
         stage.setScene(mainScene);
 
-        FXMLLoader loader = (FXMLLoader) mainScene.getUserData();
-        Controller_MainScene mainSceneCtrl = loader.getController();
-
-        mainSceneCtrl.getListViewTasks().getSelectionModel().select((int)mainScene.getUserData()); //select current task in main scene
-        mainSceneCtrl.DeleteTaskBtnPress(event); //delete selected task
-
-
     }
 
     void initData(Task task) {

@@ -74,11 +74,10 @@ public class Controller_MainScene implements Initializable {
         // create a scene object from the source of button press action
         Scene mainScene = source.getScene();
 
-        mainScene.setUserData(source.getUserData());
-
 
         // create edit task scene controller instance
         Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene);
+        mainScene.setUserData(ListViewTasks.getSelectionModel().getSelectedIndex());
         // set the controller for edit task scene
         loader.setController(controller_editTaskScene);
         // send the selected task to edit task scene controller
