@@ -49,24 +49,14 @@ public class Controller_EditTaskScene implements Initializable {
         stage.setScene(mainScene);
     }
 
-    void initData(Task task) {
-        this.task = task;
-    }
-
-    @FXML
-    public void BtnBackPress(ActionEvent event) throws java.io.IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("../Scenes/scene_main.fxml"));
-
-        Scene scene = new Scene(root);
-        Node source = (Node)event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.setScene(scene);
-
-    }
 
     @FXML
     private void BtnDeletePress(ActionEvent event){
 
+    }
+
+    void initData(Task task) {
+        this.task = task;
     }
 
 }
