@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 public class Controller_EditTaskScene implements Initializable {
     private Task task;
     private Scene mainScene;
+
     @FXML
     private Button BtnBack;
 
@@ -52,6 +53,17 @@ public class Controller_EditTaskScene implements Initializable {
 
     @FXML
     private void BtnDeletePress(ActionEvent event){
+        //return to main scene
+        Node source = (Node)event.getSource();
+        Stage stage = (Stage)source.getScene().getWindow();
+        stage.setScene(mainScene);
+
+        FXMLLoader loader = (FXMLLoader) mainScene.getUserData();
+        Controller_MainScene mainSceneCtrl = loader.getController();
+
+        mainSceneCtrl.getListViewTasks().getSelectionModel().select((int)mainScene.getUserData()); //select current task in main scene
+        mainSceneCtrl.DeleteTaskBtnPress(event); //delete selected task
+
 
     }
 

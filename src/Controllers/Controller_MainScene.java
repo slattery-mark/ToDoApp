@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller_MainScene implements Initializable {
@@ -72,6 +73,10 @@ public class Controller_MainScene implements Initializable {
         Node source = (Node) event.getSource();
         // create a scene object from the source of button press action
         Scene mainScene = source.getScene();
+
+        mainScene.setUserData(source.getUserData());
+
+
         // create edit task scene controller instance
         Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene);
         // set the controller for edit task scene
@@ -88,5 +93,10 @@ public class Controller_MainScene implements Initializable {
     @FXML
     void NewTaskBtnPress(ActionEvent event) throws IOException {
 
+    }
+
+    @FXML
+    public ListView<Task> getListViewTasks(){
+        return ListViewTasks;
     }
 }
