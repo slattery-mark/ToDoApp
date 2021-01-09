@@ -2,22 +2,18 @@ package Controllers;
 
 import TaskResources.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller_MainScene implements Initializable {
@@ -36,7 +32,7 @@ public class Controller_MainScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // disable edit/delete buttons if the list is empty
+        // Disable edit/delete buttons if the list is empty
         ListViewTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
             if (ListViewTasks.getSelectionModel().isEmpty()) {
                 BtnDeleteTask.setDisable(true);
@@ -46,6 +42,7 @@ public class Controller_MainScene implements Initializable {
                 BtnEditTask.setDisable(false);
             }
         });
+        // Delete the selected task when delete key is pressed
         ListViewTasks.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.DELETE) {
                 DeleteTaskBtnPress(new ActionEvent());
@@ -68,24 +65,22 @@ public class Controller_MainScene implements Initializable {
 
     @FXML
     void EditTaskBtnPress(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_edittask.fxml"));
-        // get source of button press action
+        // Create an instance of mainScene to send to Controller_EditTaskScene
         Node source = (Node) event.getSource();
-        // create a scene object from the source of button press action
         Scene mainScene = source.getScene();
+        mainScene.setUserData(source.getUserData()); // What does this do??
 
-        mainScene.setUserData(source.getUserData());
-
-
-        // create edit task scene controller instance
+        // Create instance of Controller_EditTaskScene, send the selected task and the instance of mainScene to return to
         Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene, this);
-        // set the controller for edit task scene
-        loader.setController(controller_editTaskScene);
-        // send the selected task to edit task scene controller
         controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
-        // create a new scene object
+
+        // Set the controller for scene_edittask
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_edittask.fxml"));
+        loader.setController(controller_editTaskScene);
+        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
+
+        // Change the scene to scene_edittask
         Scene editTaskScene = new Scene(loader.load());
-        // set the stage to the new scene
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(editTaskScene);
     }

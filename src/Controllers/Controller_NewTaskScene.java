@@ -43,9 +43,7 @@ public class Controller_NewTaskScene implements Initializable {
     @FXML // Add Task button execution
     void AddTask(ActionEvent event) {
         if (!TaskNameField.getText().trim().isEmpty()) {
-            // Create a task object
             Task task = new Task(TaskNameField.getText(), TaskDescriptionField.getText());
-            // Store the task in the stage object, which can be accessed by the stage is was called from(?), then close the stage
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.setUserData(task);
