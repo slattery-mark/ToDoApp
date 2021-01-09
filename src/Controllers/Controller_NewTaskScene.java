@@ -1,12 +1,16 @@
 package Controllers;
 
-import TaskResources.Task;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,50 +19,47 @@ import java.util.ResourceBundle;
 
 public class Controller_NewTaskScene implements Initializable {
 
+    private final Scene mainScene;
     @FXML
-    private TextField TaskNameField;
+    private Button BtnCancel;
 
     @FXML
-    private TextField TaskDescriptionField;
+    private TextField TxtFieldTaskName;
 
     @FXML
-    private Button AddTaskButton;
+    private TextArea TxtAreaTaskDescription;
 
     @FXML
-    private Button CancelButton;
+    private DatePicker DatePickerDueDate;
+
+    @FXML
+    private ChoiceBox<?> ChoiceBoxHour;
+
+    @FXML
+    private ChoiceBox<?> ChoiceBoxMinute;
+
+    @FXML
+    private ChoiceBox<?> ChoiceBoxAMPM;
+
+    @FXML
+    private Button BtnAddTask;
+    Controller_NewTaskScene(Scene mainScene) {
+        this.mainScene = mainScene;
+    }
+
+    @FXML
+    void returnToMainScene(ActionEvent event) {
+        Node source = (Node)event.getSource();
+        Stage stage = (Stage)source.getScene().getWindow();
+        stage.setScene(mainScene);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Disable Add Task Button while there is no text in the Task Name Field
-        AddTaskButton.setDisable(true);
-        // Set a listener to the task name field so that it is required before adding a task
-        TaskNameField.textProperty().addListener((observableValue, s, t1) -> {
-            if(t1.equals(""))
-                AddTaskButton.setDisable(true);
-            else
-                AddTaskButton.setDisable(false);
+        // Disable add task button until task name has been entered
+        BtnAddTask.setDisable(true);
+        TxtFieldTaskName.textProperty().addListener((observableValue, s, t1) -> {
+            BtnAddTask.setDisable(t1.isEmpty());
         });
     }
-
-    @FXML // Add Task button execution
-    void AddTask(ActionEvent event) {
-        if (!TaskNameField.getText().trim().isEmpty()) {
-            Task task = new Task(TaskNameField.getText(), TaskDescriptionField.getText());
-            Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.setUserData(task);
-            //stage.getOnCloseRequest(); --commented out because i don't know what this does
-            stage.close();
-        }
-    }
-
-    @FXML
-    public void CloseStage(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        //stage.getOnCloseRequest(); --commented out because i don't know what this does
-        stage.close();
-    }
-
 }
-

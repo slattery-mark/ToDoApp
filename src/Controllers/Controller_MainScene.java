@@ -32,7 +32,7 @@ public class Controller_MainScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Disable edit/delete buttons if the list is empty
+        // Disable edit/delete buttons if the list is empty, if list isn't empty set selection to first task
         ListViewTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
             if (ListViewTasks.getSelectionModel().isEmpty()) {
                 BtnDeleteTask.setDisable(true);
@@ -55,6 +55,8 @@ public class Controller_MainScene implements Initializable {
         ListViewTasks.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
         ListViewTasks.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
         ListViewTasks.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
+
+        ListViewTasks.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -87,7 +89,22 @@ public class Controller_MainScene implements Initializable {
 
     @FXML
     void NewTaskBtnPress(ActionEvent event) throws IOException {
+        // Create an instance of mainScene to send to Controller_EditTaskScene
+        Node source = (Node) event.getSource();
+        Scene mainScene = source.getScene();
+        mainScene.setUserData(source.getUserData()); // What does this do??
 
+        // Create instance of Controller_EditTaskScene, send the selected task and the instance of mainScene to return to
+        Controller_NewTaskScene controller_newTaskScene = new Controller_NewTaskScene(mainScene);
+
+        // Set the controller for scene_edittask
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_newtask.fxml"));
+        loader.setController(controller_newTaskScene);
+
+        // Change the scene to scene_edittask
+        Scene newTaskScene = new Scene(loader.load());
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.setScene(newTaskScene);
     }
 
     @FXML
@@ -95,4 +112,5 @@ public class Controller_MainScene implements Initializable {
         ListViewTasks.getSelectionModel().select(task);
         ListViewTasks.getItems().remove(ListViewTasks.getSelectionModel().getSelectedItem());
     }
+
 }
