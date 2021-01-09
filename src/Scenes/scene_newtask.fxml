@@ -18,7 +18,7 @@
          <children>
             <HBox prefHeight="30.0" prefWidth="280.0">
                <children>
-                  <Button fx:id="BtnCancel" mnemonicParsing="false" onAction="#returnToMainScene" prefHeight="30.0" prefWidth="59.0" text="Cancel">
+                  <Button fx:id="BtnCancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" text="Cancel">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -38,7 +38,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </TextArea>
-            <DatePicker fx:id="DatePickerDueDate" prefHeight="30.0" prefWidth="280.0" promptText="Due Date (Optional)">
+            <DatePicker fx:id="DatePickerDueDate" editable="false" prefHeight="30.0" prefWidth="280.0" promptText="Due Date (Optional)">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

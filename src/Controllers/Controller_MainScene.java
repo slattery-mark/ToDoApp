@@ -34,7 +34,7 @@ public class Controller_MainScene implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Disable edit/delete buttons if the list is empty, if list isn't empty set selection to first task
         ListViewTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
-            if (ListViewTasks.getSelectionModel().isEmpty()) {
+            if (ListViewTasks.getSelectionModel().getSelectedIndex() == -1) {
                 BtnDeleteTask.setDisable(true);
                 BtnEditTask.setDisable(true);
             } else {

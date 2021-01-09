@@ -1,7 +1,5 @@
 package Controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,6 +54,8 @@ public class Controller_NewTaskScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        BtnCancel.setOnAction(this::returnToMainScene);
+
         // Disable add task button until task name has been entered
         BtnAddTask.setDisable(true);
         TxtFieldTaskName.textProperty().addListener((observableValue, s, t1) -> {
