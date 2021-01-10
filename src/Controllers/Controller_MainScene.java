@@ -88,29 +88,33 @@ public class Controller_MainScene implements Initializable {
     }
 
     @FXML
+    public void DeleteFromEdit(Task task){
+        ListViewTasks.getSelectionModel().select(task);
+        ListViewTasks.getItems().remove(ListViewTasks.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
     void NewTaskBtnPress(ActionEvent event) throws IOException {
-        // Create an instance of mainScene to send to Controller_EditTaskScene
+        // Create an instance of mainScene to send to Controller_NewTaskScene
         Node source = (Node) event.getSource();
         Scene mainScene = source.getScene();
         mainScene.setUserData(source.getUserData()); // What does this do??
 
-        // Create instance of Controller_EditTaskScene, send the selected task and the instance of mainScene to return to
-        Controller_NewTaskScene controller_newTaskScene = new Controller_NewTaskScene(mainScene);
+        // Create instance of Controller_NewTaskScene, send the selected task and the instance of mainScene to return to
+        Controller_NewTaskScene controller_newTaskScene = new Controller_NewTaskScene(mainScene, this);
 
-        // Set the controller for scene_edittask
+        // Set the controller for scene_newtask
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_newtask.fxml"));
         loader.setController(controller_newTaskScene);
 
-        // Change the scene to scene_edittask
+        // Change the scene to scene_newtask
         Scene newTaskScene = new Scene(loader.load());
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(newTaskScene);
     }
 
-    @FXML
-    public void DeleteFromEdit(Task task){
-        ListViewTasks.getSelectionModel().select(task);
-        ListViewTasks.getItems().remove(ListViewTasks.getSelectionModel().getSelectedItem());
+    public void addTaskFromAdd(Task task){
+        ListViewTasks.getItems().add(task);
     }
 
 }
