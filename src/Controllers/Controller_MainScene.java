@@ -33,6 +33,9 @@ public class Controller_MainScene implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Disable edit/delete buttons if the list is empty, if list isn't empty set selection to first task
+        // May need to adjust this code after save/load, for now assumes list is empty at start
+        BtnDeleteTask.setDisable(true);
+        BtnEditTask.setDisable(true);
         ListViewTasks.getSelectionModel().selectedItemProperty().addListener((observableValue, task, t1) -> {
             if (ListViewTasks.getSelectionModel().getSelectedIndex() == -1) {
                 BtnDeleteTask.setDisable(true);
@@ -48,7 +51,6 @@ public class Controller_MainScene implements Initializable {
                 DeleteTaskBtnPress(new ActionEvent());
             }
         });
-        ListViewTasks.getSelectionModel().selectFirst();
     }
 
     @FXML
