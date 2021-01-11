@@ -5,8 +5,10 @@ import TaskResources.Task;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -44,15 +46,23 @@ public class Controller_EditTaskScene implements Initializable {
         TaskDescription.setText(task.getDescription());
     }
     @FXML
-    void returnToMainScene(ActionEvent event) throws IOException {
+    void BtnBackPress(ActionEvent event) throws IOException {
         Node source = (Node)event.getSource();
         Stage stage = (Stage)source.getScene().getWindow();
         stage.setScene(mainScene);
     }
+
+
     @FXML
     private void BtnDeletePress(ActionEvent event) throws IOException{
+        //return to main scene
+        Node source = (Node)event.getSource();
+        Stage stage = (Stage)source.getScene().getWindow();
+        stage.setScene(mainScene);
+
         ctrl_main.DeleteFromEdit(task);
-        returnToMainScene(event);
+
+
     }
 
     void initData(Task task) {
