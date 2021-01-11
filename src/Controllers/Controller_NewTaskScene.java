@@ -67,11 +67,12 @@ public class Controller_NewTaskScene implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BtnCancel.setOnAction(this::returnToMainScene);
         BtnAddTask.setOnAction(this::addTask);
-
+        initChoiceBoxes();
         // Disable add task button until task name has been entered
         BtnAddTask.setDisable(true);
-        TxtFieldTaskName.textProperty().addListener((observableValue, s, t1) -> {
-            BtnAddTask.setDisable(t1.isEmpty());
-        });
+        TxtFieldTaskName.textProperty().addListener((observableValue, s, t1) -> BtnAddTask.setDisable(t1.isEmpty()));
+    }
+    private void initChoiceBoxes() {
+
     }
 }

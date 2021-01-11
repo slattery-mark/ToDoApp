@@ -67,22 +67,24 @@ public class Controller_MainScene implements Initializable {
 
     @FXML
     void EditTaskBtnPress(ActionEvent event) throws IOException {
-        // Create an instance of mainScene to send to Controller_EditTaskScene
-        Node source = (Node) event.getSource();
-        Scene mainScene = source.getScene();
-        mainScene.setUserData(source.getUserData()); // What does this do??
-
-        // Create instance of Controller_EditTaskScene, send the selected task and the instance of mainScene to return to
-        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene, this);
-        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
-
-        // Set the controller for scene_edittask
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scenes/scene_edittask.fxml"));
-        loader.setController(controller_editTaskScene);
-        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
+        // get source of button press action
+        Node source = (Node) event.getSource();
+        // create a scene object from the source of button press action
+        Scene mainScene = source.getScene();
 
-        // Change the scene to scene_edittask
+        mainScene.setUserData(source.getUserData());
+
+
+        // create edit task scene controller instance
+        Controller_EditTaskScene controller_editTaskScene = new Controller_EditTaskScene(mainScene, this);
+        // set the controller for edit task scene
+        loader.setController(controller_editTaskScene);
+        // send the selected task to edit task scene controller
+        controller_editTaskScene.initData(ListViewTasks.getSelectionModel().getSelectedItem());
+        // create a new scene object
         Scene editTaskScene = new Scene(loader.load());
+        // set the stage to the new scene
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(editTaskScene);
     }
@@ -98,7 +100,7 @@ public class Controller_MainScene implements Initializable {
         // Create an instance of mainScene to send to Controller_NewTaskScene
         Node source = (Node) event.getSource();
         Scene mainScene = source.getScene();
-        mainScene.setUserData(source.getUserData()); // What does this do??
+        // mainScene.setUserData(source.getUserData()); --What does this do??
 
         // Create instance of Controller_NewTaskScene, send the selected task and the instance of mainScene to return to
         Controller_NewTaskScene controller_newTaskScene = new Controller_NewTaskScene(mainScene, this);
