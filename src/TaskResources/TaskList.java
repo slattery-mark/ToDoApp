@@ -1,4 +1,6 @@
+/*
 package TaskResources;
+
 import java.util.*;
 
 public class TaskList {
@@ -52,9 +54,9 @@ public class TaskList {
 
         if(choice == 'Y')
         {
-            /*                                                                  */
-            /*Will need to implement exception handling to handle input mismatch*/
-            /*                                                                  */
+            //
+            //Will need to implement exception handling to handle input mismatch
+            //
 
             System.out.println("Enter deadline information:");
             System.out.print("Date: ");
@@ -91,3 +93,4 @@ public class TaskList {
         //copy all data except for the old name into a new object
     }
 }
+*/

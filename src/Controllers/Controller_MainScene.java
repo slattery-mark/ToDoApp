@@ -48,14 +48,6 @@ public class Controller_MainScene implements Initializable {
                 DeleteTaskBtnPress(new ActionEvent());
             }
         });
-        ListViewTasks.getItems().add(new Task("constructor 1 (name only)"));
-        ListViewTasks.getItems().add(new Task("constructor 2", "name and description"));
-        ListViewTasks.getItems().add(new Task("constructor 3", "descrip + year", 2020));
-        ListViewTasks.getItems().add(new Task("constructor 4", "descrip + year + month", 2021, 2));
-        ListViewTasks.getItems().add(new Task("constructor 5", "descrip + year + month + day", 2022, 3, 1));
-        ListViewTasks.getItems().add(new Task("constructor 6", "descrip + year + month + day + hour", 2023, 4, 2, 12));
-        ListViewTasks.getItems().add(new Task("constructor 7", "descrip + year + month + day + hour + minute", 2024, 5, 3, 1, 30));
-
         ListViewTasks.getSelectionModel().selectFirst();
     }
 
@@ -100,7 +92,6 @@ public class Controller_MainScene implements Initializable {
         // Create an instance of mainScene to send to Controller_NewTaskScene
         Node source = (Node) event.getSource();
         Scene mainScene = source.getScene();
-        // mainScene.setUserData(source.getUserData()); --What does this do??
 
         // Create instance of Controller_NewTaskScene, send the selected task and the instance of mainScene to return to
         Controller_NewTaskScene controller_newTaskScene = new Controller_NewTaskScene(mainScene, this);
