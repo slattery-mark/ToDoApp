@@ -23,26 +23,38 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField fx:id="TxtFieldTaskName" prefHeight="30.0" prefWidth="211.0" promptText="Task Name (Required)">
+                  <TextField fx:id="TxtFieldTaskName" prefHeight="30.0" prefWidth="179.0" promptText="Task Name (Required)">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </TextField>
+                  <Label fx:id="LblTaskNameCounter" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="26.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </HBox>
-            <TextArea fx:id="TxtAreaTaskDescription" prefHeight="300.0" prefWidth="280.0" promptText="Task Description (Optional)">
+            <TextArea fx:id="TxtAreaTaskDescription" prefHeight="300.0" prefWidth="280.0" promptText="Task Description (Optional)" wrapText="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </TextArea>
-            <DatePicker fx:id="DatePickerDueDate" editable="false" prefHeight="30.0" prefWidth="280.0" promptText="Due Date (Optional)">
+            <HBox prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="DatePickerDueDate" editable="false" prefHeight="30.0" prefWidth="257.0" promptText="Due Date (Optional)" />
+                  <Label fx:id="LblTaskDetailsCounter" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="26.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
-            </DatePicker>
+            </HBox>
             <HBox prefHeight="30.0" prefWidth="280.0">
                <VBox.margin>
                   <Insets top="10.0" />

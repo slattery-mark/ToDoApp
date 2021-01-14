@@ -1,7 +1,6 @@
 package Controllers;
 
 import TaskResources.Task;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -22,12 +22,20 @@ public class Controller_NewTaskScene implements Initializable {
 
     private final Scene mainScene;
     private final Controller_MainScene ctrl_main;
+    private final int TASK_NAME_LIMIT = 25;
+    private final int TASK_DETAILS_LIMIT = 999;
 
     @FXML
     private Button BtnCancel;
 
     @FXML
     private TextField TxtFieldTaskName;
+
+    @FXML
+    private Label LblTaskNameCounter;
+
+    @FXML
+    private Label LblTaskDetailsCounter;
 
     @FXML
     private TextArea TxtAreaTaskDescription;
@@ -56,8 +64,9 @@ public class Controller_NewTaskScene implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initChoiceBoxes();
         setDefaults();
+        setMaxTextLengths();
 
-        // Set button actions (done here instead of FXML arbitrarily
+        // Set button actions (done here instead of FXML arbitrarily)
         BtnCancel.setOnAction(this::returnToMainScene);
         BtnAddTask.setOnAction(this::addTask);
 
@@ -82,6 +91,27 @@ public class Controller_NewTaskScene implements Initializable {
         ChoiceBoxMinute.setValue("59");
         ChoiceBoxAMPM.setValue("PM");
         DatePickerDueDate.setValue(LocalDate.now());
+        LblTaskNameCounter.setText(String.valueOf(TASK_NAME_LIMIT));
+        LblTaskDetailsCounter.setText(String.valueOf(TASK_DETAILS_LIMIT));
+    }
+
+    private void setMaxTextLengths() {
+        TxtFieldTaskName.lengthProperty().addListener((observableValue, oldVal, newVal) -> {
+            LblTaskNameCounter.setText(String.valueOf(TASK_NAME_LIMIT - newVal.intValue()));
+            if (newVal.intValue() > oldVal.intValue()) {
+                if (TxtFieldTaskName.getText().length() >= TASK_NAME_LIMIT) {
+                    TxtFieldTaskName.setText(TxtFieldTaskName.getText().substring(0,TASK_NAME_LIMIT));
+                }
+            }
+        });
+        TxtAreaTaskDescription.lengthProperty().addListener((observableValue, oldVal, newVal) -> {
+            LblTaskDetailsCounter.setText(String.valueOf(TASK_DETAILS_LIMIT - newVal.intValue()));
+            if (newVal.intValue() > oldVal.intValue()) {
+                if (TxtAreaTaskDescription.getText().length() >= TASK_DETAILS_LIMIT) {
+                    TxtAreaTaskDescription.setText(TxtAreaTaskDescription.getText().substring(0,TASK_DETAILS_LIMIT));
+                }
+            }
+        });
     }
 
     void returnToMainScene(ActionEvent event) {
@@ -92,7 +122,7 @@ public class Controller_NewTaskScene implements Initializable {
 
     void addTask(ActionEvent event) {
         returnToMainScene(event);
-        // Get info from fields
+
         int hour = (ChoiceBoxAMPM.getValue().equals("AM")) ? ChoiceBoxHour.getValue() : ChoiceBoxHour.getValue() + 12;
         int minute = Integer.parseInt(ChoiceBoxMinute.getValue());
         Task task = new Task(TxtFieldTaskName.getText(), TxtAreaTaskDescription.getText(), DatePickerDueDate.getValue(), hour, minute);
