@@ -36,6 +36,9 @@ public class Controller_EditTaskScene implements Initializable {
     @FXML
     private Button BtnDelete;
 
+    @FXML
+    private Button BtnSave;
+
     Controller_EditTaskScene(Scene mainScene, Controller_MainScene ctrl) {
         this.mainScene = mainScene;
         ctrl_main = ctrl;
@@ -50,6 +53,11 @@ public class Controller_EditTaskScene implements Initializable {
         Node source = (Node)event.getSource();
         Stage stage = (Stage)source.getScene().getWindow();
         stage.setScene(mainScene);
+    }
+
+    @FXML
+    void BtnSavePress(ActionEvent event)throws IOException{
+
     }
 
 
